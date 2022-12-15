@@ -53,7 +53,6 @@ import SelectedCartRightIcon from '@/components/indicator/SelectedCartRightIcon'
 //presenter
 import ItemImg from '@/pages/SelectListDemo/presenter/ItemImg'
 import ItemTitle from '@/pages/SelectListDemo/presenter/ItemTitle'
-import RssAutoLayout from '@/pages/rssAutoLayout/item'
 
 import OnDeleteIndicator from '@/components/indicator/OnDeleteIndicator';
 import SelectAvatar from '@/components/indicator/SelectAvatar';
@@ -99,6 +98,7 @@ NamedIndicatorSet({
  SelectAvatar,
   DownloadIndicator,
   ClickIndicator,
+  SelectedCartUpperRightIcon,
   ManageMenuIndicator,
   TagIndicator,
   
@@ -130,7 +130,6 @@ NamedPresenterSet({
   //NamedPresenterSet({
     ItemImg,
     ItemTitle,
-    RssAutoLayout,
     Text
   //})
 })

@@ -11,7 +11,7 @@ export default function Index(props) {
   const { ...rest } = props;
 
 
-  let api = '/api/u/autoApi/album'
+  let api = '/openapi/lc/apps'
 
   const [items, setItems] = useState('')
 
@@ -23,7 +23,7 @@ export default function Index(props) {
     const queryData = {};
     promiseAjax(api, queryData).then(resp => {
       if (resp && resp.code === 200) {
-        setItems(resp.data.records)
+        setItems(resp.data)
       } else {
         console.error("获取api path 数据失败")
       }
@@ -46,7 +46,7 @@ export default function Index(props) {
 
   return (
     <ChakraProvider>
-      <Box padding='30px 20px' w=''  >
+      <Box padding='30px 20px' w='' >
         <AutoLayout {...config} isSwitch={true} />
       </Box>
     </ChakraProvider>

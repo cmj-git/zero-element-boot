@@ -59,13 +59,13 @@ import AutoCartSet from '@/pages/AutoCartSet/Presenter'
 
 import AutoComponentSet from './AutoComponentSet'
 import RouterParamsDemo from './GetRouterPath/demo'
-import RssAutoLayout from '@/pages/rssAutoLayout/Sandbox'
+import PreviewAutoLayout from '@/components/PreviewAutoLayout/Sandbox'
+import RssAutoLayout from '@/pages/rssStyle'
 import AvatarSelected from '@/pages/AvatarSelected/Sandbox'
 import TestGroupedList from './TestGroupedList';
 //nav-ui
 import TestCRUDList from '@/composition/testCrudList';
 //preview-ui
-import PreviewAutoLayout from '@/components/PreviewAutoLayout/Sandbox'
 //jsontree-ui
 import JsonTreeDemo from '@/components/presenter/tree/JsonTree/Sandbox'
 //apis-ui
@@ -79,8 +79,16 @@ import TestIndicator from './ATestIndicator'
 
 import CssCart from '@/components/cart/CssCart'
 import TestCart from '@/pages/TestCart'
+import SelectCart from '@/pages/ManageCompoents/SelectCart/Sandbox'
+import ManagePage from '@/pages/ManagePage/Sandbox'
+import AppList from '@/pages/appList'
 import AlbumList from '@/pages/AlbumList'
-import SelectCart from '@/pages/SelectCart/Sandbox'
+import RssList from '@/pages/rssList'
+import RssContent from '@/pages/RssContent'
+import SelectLayout from '@/pages/ManageCompoents/SelectLayout'
+import SelectModulesCart from '@/pages/ManageModules/SelectModulesCart/Sandbox'
+import ImageManage from '@/pages/ImageManage'
+import RssCssAutoLayout from '@/pages/rssCssAutoLayout'
 
 
 export default function Index(props) {
@@ -95,7 +103,7 @@ export default function Index(props) {
   // function onItemClickHandle(data) {
   //   console.log('data111111 = ', data)
   // }
-  
+
 
   // history.push('/TestUserListDemo');
   //通过跳转进入单选页面
@@ -107,7 +115,6 @@ export default function Index(props) {
 
   // return <Connection/>
   // return <AutoComponentSet onItemClick={onItemClickHandle}/>
-  return <SelectCart {...props}/> 
 
   // return (
   // <CssCart width='300px' margin='40px'>
@@ -129,8 +136,27 @@ export default function Index(props) {
   //   ]
   // }
   // return <TestCRUDList />
+  // return <AvatarSelected />
+  // return <SelectCart />
+  // return <RssCssAutoLayout />
+  // return <AppList />
+  // return <ManagePage />
+  // return <TestCRUDList />
+  // return <TestCRUDList />
+  // return <RssAutoLayout/>
+  // return <ImageManage/>
+  return <AlbumList/>
+  // return <RssContent/>
+  // return <SelectLayout/>
+  // return <SelectModulesCart/>
 
-  // return <AlbumList/>
+  // return <RssList/>
+  // return (
+  //   <CssCart width='300px' margin='40px'>
+  //     <TestCart />
+  //   </CssCart>
+  // )
+  // return <RssAutoLayout/>
 
 
 }

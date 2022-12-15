@@ -1,9 +1,8 @@
 module.exports = {
-  xname: 'Flexbox',
-  props: {
-    direction: "column"
-
-  },
+  xname: 'Wrap',
+  // props: {
+    // direction: "column"
+  // },
   presenter: {
     children: [
       {

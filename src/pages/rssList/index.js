@@ -10,8 +10,7 @@ export default function Index(props) {
 
   const { ...rest } = props;
 
-
-  let api = '/api/u/autoApi/album'
+  let api = '/api/u/rss/master'
 
   const [items, setItems] = useState('')
 
@@ -46,7 +45,7 @@ export default function Index(props) {
 
   return (
     <ChakraProvider>
-      <Box padding='30px 20px' w=''  >
+      <Box padding='30px 20px' w='830px'  >
         <AutoLayout {...config} isSwitch={true} />
       </Box>
     </ChakraProvider>

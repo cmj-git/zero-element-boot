@@ -1,8 +1,11 @@
 ### 通过`AutoLayout`展示一个组件 
 
 
+<<<<<<< HEAD
 ### 通过`AutoLayout`展示一个组件 
 
+=======
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
 ```json
 {
     "xname": "Avatar"
@@ -49,8 +52,19 @@
     "props": {
         "url":"https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
     },
+<<<<<<< HEAD
 
     "cart": "HCenter"
+=======
+    "cart": {
+        "xname": "CssCart",
+        "props": {
+			"margin":"10px",
+			"padding":"10px",
+			"border":"1px #ff000 solid"
+        }
+    }
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
 }
 ```
 
@@ -66,9 +80,15 @@
     "cart": {
         "xname": "CssCart",
         "props": {
+<<<<<<< HEAD
 			"padding":"10px",
 			"border":"1px #ff000 solid",
             "backgroundColor":"red"
+=======
+			"margin":"10px",
+			"padding":"10px",
+			"border":"1px #ff000 solid"
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
         }
     }
 }
@@ -98,6 +118,7 @@
 }
 ```
 
+<<<<<<< HEAD
 > 或
 ```json
 {
@@ -123,6 +144,8 @@
 ## 多组件部分
 
 >>>>>>> a3958da09d1a2c17a07bb97acb3ea5b7ae67515a
+=======
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
 
 ### 由多个子组件组成的`AutoLayout`新组件
 
@@ -130,9 +153,13 @@
 {
     "children": [
         "Butter",
+<<<<<<< HEAD
         "Clean",
         "Clear",
         "Pink"
+=======
+        "Clean"
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
     ]
 }
 ```
@@ -145,7 +172,11 @@
         {
             "xname": "Avatar",
             "props":{
+<<<<<<< HEAD
                 "url": "http://local.webtools.io/pepsi.png",
+=======
+                "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
             }
         },
         {
@@ -153,6 +184,7 @@
             "props":{
                 "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
             }
+<<<<<<< HEAD
         }
     ]
 }
@@ -207,23 +239,44 @@
                     "background": "black"
                 }
             }
+=======
+        },
+        {
+            "xname": "Butter"
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
         }
     ]
 }
 ```
 
+<<<<<<< HEAD
 
 ###  由多个子组件组成并且对其布局的`AutoLayout`新组件
+=======
+###  对带有多个子组件进行布局的`AutoLayout`组件
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
 > 配置有 `children` 或 `presenter`时, 即 `xname` 认为是布局组件
 
 ```json
 {
     "xname": "Wrap",
     "children": [
+<<<<<<< HEAD
         "Butter",
         "Clean",
         "Clear",
         "Pink"
+=======
+        {
+            "xname": "Avatar",
+            "props":{
+                "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
+            }
+        },
+        {
+            "xname": "Butter"
+        }
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
     ]
 }
 ```
@@ -233,6 +286,7 @@
 {
     "xname": "Flexbox",
     "props": {
+<<<<<<< HEAD
 		"direction":"row"
     },
     "children": [
@@ -240,6 +294,20 @@
         "Clean",
         "Clear",
         "Pink"
+=======
+		"direction":"column"
+    },
+    "children": [
+        {
+            "xname": "Avatar",
+            "props":{
+                "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
+            }
+        },
+        {
+            "xname": "Butter"
+        }
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
     ]
 }
 ```
@@ -255,16 +323,28 @@
     },
     "children": [
         {
+<<<<<<< HEAD
             "xname": "Avatar",
             "props": {
                 "size":"90"
+=======
+            "presenter": {
+                "xname": "Avatar",
+                "props": {
+    				"size":"90"
+                }
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
             },
             "binding":{
                 "avatarUrl":"url"
             }
         },
         {
+<<<<<<< HEAD
             "xname": "Clear",
+=======
+            "xname": "Butter",
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
             "binding":{
                 "color":"color"
             }
@@ -273,12 +353,16 @@
 }
 ```
 
+<<<<<<< HEAD
 
 
 ## 列表组件部分
 
 
 ### 配置`AutoLayout`列表组件
+=======
+### 创建`AutoLayout`列表组件
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
 > 带有 `presenter`, 并且`container`是一个列表组件, 即`presenter`是容器组件的子组件
 
 ```json
@@ -349,9 +433,13 @@
 ```
 
 
+<<<<<<< HEAD
 ## 复合嵌套组件部分
 
 ### 列表`AutoLayout`作为新的`AutoLayout`组件的子组件
+=======
+### 列表`AutoLayout`作为子组件
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
 > 直接通过 `AutoLayout` 描述符作为子组件
 
 ```json
@@ -583,8 +671,11 @@
 	 
 	   //点击按钮之后执行 的api
 	   "navigation": {
+<<<<<<< HEAD
            //点击后跳转
        "link": "http://local.webtools.io/preview-ui/#/?api=/api/u/rss/master/(id)&testLayoutName=RssContent",
+=======
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
 	     "model": {
 	       "api": {
 	         "createAPI": "/api/u/rss/master",
@@ -624,6 +715,7 @@
   }
   ```
 
+<<<<<<< HEAD
 
 ## 单选或多选
 用SelectList 对一个列表 进行管理 绑定参数 
@@ -694,3 +786,6 @@
 
 ### 由多个子组件组成的复选组件
 
+=======
+  
+>>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
