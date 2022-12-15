@@ -1,5 +1,5 @@
+### 通过`AutoLayout`展示一个组件 
 
-## 单组件部分
 
 ### 通过`AutoLayout`展示一个组件 
 
@@ -49,6 +49,7 @@
     "props": {
         "url":"https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
     },
+
     "cart": "HCenter"
 }
 ```
@@ -121,6 +122,7 @@
 
 ## 多组件部分
 
+>>>>>>> a3958da09d1a2c17a07bb97acb3ea5b7ae67515a
 
 ### 由多个子组件组成的`AutoLayout`新组件
 
@@ -128,7 +130,9 @@
 {
     "children": [
         "Butter",
-        "Clean"
+        "Clean",
+        "Clear",
+        "Pink"
     ]
 }
 ```
@@ -141,7 +145,7 @@
         {
             "xname": "Avatar",
             "props":{
-                "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
+                "url": "http://local.webtools.io/pepsi.png",
             }
         },
         {
@@ -149,13 +153,65 @@
             "props":{
                 "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
             }
-        },
-        {
-            "xname": "Butter"
         }
     ]
 }
 ```
+
+### 为每个子组件增加统一的`Cart`
+
+```json
+{
+    "children": [
+        "Butter",
+        "Clean",
+        "Clear",
+        "Pink"
+    ],
+    "cart": "Cart"
+}
+```
+
+### 为每个子组件配置不同的`Cart`
+
+```json
+{
+    "cart": "Cart",
+    "children": [
+        {
+            "xname": "Butter"
+        },
+        {
+            "xname": "Clean",
+            "cart": {
+                "xname": "CssCart",
+                "props": {
+                    "background": "blue"
+                }
+            }
+        },
+        {
+            "xname": "Clear",
+            "cart": {
+                "xname": "CssCart",
+                "props": {
+                    "background": "green"
+                }
+            }
+        },
+        {
+            "xname": "Pink",
+            "cart": {
+                "xname": "CssCart",
+                "props": {
+                    "background": "black"
+                }
+            }
+        }
+    ]
+}
+```
+
 
 ###  由多个子组件组成并且对其布局的`AutoLayout`新组件
 > 配置有 `children` 或 `presenter`时, 即 `xname` 认为是布局组件
@@ -164,21 +220,10 @@
 {
     "xname": "Wrap",
     "children": [
-        {
-            "xname": "Avatar",
-            "props":{
-                "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
-            }
-        },
-        {
-            "xname": "Avatar",
-            "props":{
-                "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
-            }
-        },
-        {
-            "xname": "Butter"
-        }
+        "Butter",
+        "Clean",
+        "Clear",
+        "Pink"
     ]
 }
 ```
@@ -188,24 +233,13 @@
 {
     "xname": "Flexbox",
     "props": {
-		"direction":"column"
+		"direction":"row"
     },
     "children": [
-        {
-            "xname": "Avatar",
-            "props":{
-                "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
-            }
-        },
-        {
-            "xname": "Avatar",
-            "props":{
-                "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
-            }
-        },
-        {
-            "xname": "Butter"
-        }
+        "Butter",
+        "Clean",
+        "Clear",
+        "Pink"
     ]
 }
 ```
@@ -221,18 +255,16 @@
     },
     "children": [
         {
-            "presenter": {
-                "xname": "Avatar",
-                "props": {
-    				"size":"90"
-                }
+            "xname": "Avatar",
+            "props": {
+                "size":"90"
             },
             "binding":{
                 "avatarUrl":"url"
             }
         },
         {
-            "xname": "Butter",
+            "xname": "Clear",
             "binding":{
                 "color":"color"
             }
@@ -240,6 +272,11 @@
     ]
 }
 ```
+
+
+
+## 列表组件部分
+
 
 ### 配置`AutoLayout`列表组件
 > 带有 `presenter`, 并且`container`是一个列表组件, 即`presenter`是容器组件的子组件
@@ -310,6 +347,7 @@
     }
 }
 ```
+
 
 ## 复合嵌套组件部分
 
@@ -545,6 +583,8 @@
 	 
 	   //点击按钮之后执行 的api
 	   "navigation": {
+           //点击后跳转
+       "link": "http://local.webtools.io/preview-ui/#/?api=/api/u/rss/master/(id)&testLayoutName=RssContent",
 	     "model": {
 	       "api": {
 	         "createAPI": "/api/u/rss/master",
@@ -584,4 +624,73 @@
   }
   ```
 
-  
+
+## 单选或多选
+用SelectList 对一个列表 进行管理 绑定参数 
+  ```json
+  {
+   "xname": "Flexbox",
+  "presenter": {
+    "children": [
+      {
+        "xname": "Avatar",
+        "binding": {
+          "avatarUrl": "url",
+          "size": "size"
+        },
+      },
+      {
+        "xname": "Text",
+        "binding": {
+          "title": "content"
+        },
+        "props": {
+          "w": "100%",
+          "textAlign": "center",
+          "marginTop": "10px"
+        }
+      }
+    ],
+  },
+  "container": "SelectList",
+  "cart": {
+    "xname": "Cart",
+    "props": {
+      "linewidth": "0",
+      "padding":"0"
+    }
+  },
+  //默认状态
+  "unselector": {
+   "xname": "SelectAvatar",
+    "props": {
+      "state": "unselected"
+    }
+  },
+  //hover状态
+  "indicator":
+  {
+    "xname": "TagIndicator",
+    "props": {
+      "color": "#d4237a",
+      "none": "any",
+      "outline": "any"
+    }
+  },
+  //选中状态
+  "selector": {
+    "xname": "SelectAvatar",
+    "props": {
+      "state": "selected"
+    }
+  }
+  }
+  ```
+
+
+
+
+### 由多个子组件组成的单选组件
+
+### 由多个子组件组成的复选组件
+
