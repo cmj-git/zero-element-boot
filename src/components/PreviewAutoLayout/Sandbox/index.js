@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import qs from 'qs';
-const promiseAjax = require('@/components/utils/request');
+// const promiseAjax = require('@/components/utils/request');
 
 import PreviewAutoLayout from '../index'
 import PreviewItem from './PreviewItem';
 // import { useSetState } from 'ahooks';
-import testLayout from './testLayout'
+// import testLayout from './testLayout'
 
 export default function (props) {
 
@@ -51,7 +51,7 @@ export default function (props) {
 
   // let layoutJsonApi = `/openapi/lc/module/getAutoLayout/autoLayOut`
 
-  let layoutJsonApi = params.layoutJsonApi
+  let layoutJsonApi = params.layoutJsonApi || ''
 
   // if (process.env.NODE_ENV === 'development') {
   //   layoutJsonApi = 'http://192.168.3.112:8080/openapi/lc/module/getAutoLayout/autoLayOut'
@@ -67,6 +67,8 @@ export default function (props) {
 
   const layoutData = {}
 
+  let mockName = params.mockName || ''
+
   return (
     <>
         <PreviewAutoLayout api={apiPath} apiName={apiName} 
@@ -76,6 +78,7 @@ export default function (props) {
           layoutId={layoutId} allComponents={allComponents} 
           testLayoutName={testLayoutName}
           testBindingName={testBindingName}
+          mockName={mockName}
         />
     </>
   )

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { ChakraProvider, Flex, Center, Box, Stack, Spacer, VStack, Container, Button, Input, Select } from "@chakra-ui/react";
+import { Flex, Box, Stack, VStack, Container, Button, Input } from "@chakra-ui/react";
 import { AutoLayout } from '@/components';
-// import AutoLayout from '../AutoLayout';
 import Loading from '@/components/loading';
 const promiseAjax = require('@/components/utils/request');
 import JarItem from './Sandbox/JarItem';
@@ -19,7 +18,6 @@ export default function Index (props) {
   const [currentItemName, setCurrentItemName] = useState('');
   const [searchLogContent, setSearchLogContent] = useState('');
   const [searchLogCount, setSearchLogCount] = useState('');
-  //
 
   let layoutData = '';
   const layoutJsonPath = '';
@@ -39,7 +37,7 @@ export default function Index (props) {
   };
 
   const onJarItemClick = (item) => {
-    // console.log(item, ' === item')
+    console.log(item, ' === item')
     let name = item.value;
 
     if (name.indexOf('@') > -1) {
@@ -185,7 +183,6 @@ export default function Index (props) {
 
 
   return (
-    <ChakraProvider>
       <Flex>
         <Box>
           <VStack spacing='3px'>
@@ -222,6 +219,7 @@ export default function Index (props) {
             {/* <Input placeholder='请输入搜索内容' onChange={(e) => setSearchContent(SearchContent, 2)} /> */}
 
 
+
             {/* <Select placeholder='medium size' size='md' /> */}
             <div style={{ minWidth: '800px', marginTop: '15px' }}>   {
               isShowList ? (
@@ -252,6 +250,5 @@ export default function Index (props) {
         </Box>
 
       </Flex>
-    </ChakraProvider>
   )
 }

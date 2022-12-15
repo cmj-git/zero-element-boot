@@ -26,6 +26,7 @@ import ShadowIndicator from '@/components/indicator/ShadowIndicator';
 import DownloadIndicator from '@/components/indicator/DownloadIndicator'
 import ClickIndicator from '@/components/indicator/ClickIndicator'
 import ManageMenuIndicator from '@/components/indicator/ManageMenuIndicator'
+import BackIndicator from '@/components/indicator/BackIndicator';
 
 //presenter
 import ImageAnimation from '@/pages/PresenterTestDemo/components/presenter/item/ItemAvatar'
@@ -35,7 +36,7 @@ import ContentFinish from '@/pages/PresenterTestDemo/components/presenter/item/I
 import {Avatar, DownloadButton, ItemPlaceholder, AddNewButton, Text } from '@/components/presenter';
 import {Title, Subtitle, StatisticsList, StatisticalDescription} from '@/presenter/demo';
 
-import JarItem from '@/composition/Standalone/JarItem';
+import JarItem from '@/composition/LogsUi/Sandbox/JarItem';
 import SwaggerItem from '@/composition/ApisUi/SwaggerItem';
 
 import { InputCompx, SelectFetch } from '@/components/formItemType';
@@ -51,6 +52,12 @@ import SelectedCartUpperRightIcon from '@/components/indicator/SelectedCartUpper
 import SelectedCartRightIcon from '@/components/indicator/SelectedCartRightIcon';
 
 //presenter
+import {
+Clean,
+Butter, 
+Pink,
+Clear } from '@/components/presenter'
+
 import ItemImg from '@/pages/SelectListDemo/presenter/ItemImg'
 import ItemTitle from '@/pages/SelectListDemo/presenter/ItemTitle'
 
@@ -101,6 +108,7 @@ NamedIndicatorSet({
   SelectedCartUpperRightIcon,
   ManageMenuIndicator,
   TagIndicator,
+  BackIndicator,
   
   SelectedCartUpperRightIcon,
   SelectedCartRightIcon,
@@ -108,6 +116,12 @@ NamedIndicatorSet({
 
 NamedPresenterSet({
   ItemPlaceholder,
+
+  //default
+  Clean,
+  Clear,
+  Butter,
+  Pink,
 
   Avatar,
   Title,

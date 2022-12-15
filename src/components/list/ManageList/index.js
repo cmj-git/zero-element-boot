@@ -23,6 +23,7 @@ import {
   Spinner,
   useToast,
 } from "@chakra-ui/react";
+import { getEndpoint } from '@/components/config/common';
 
 const promiseAjax = require('@/components/utils/request');
 const formItemTypeMap = require('@/components/config/formItemTypeConfig').get();
@@ -45,7 +46,7 @@ export default forwardRef(function ManageList(props) {
 
   const { children, layout,
     items, dataSource = items, currentTabItem,
-    navigation, addnew, onItemClick, cb, isSwitch = false, 
+    navigation, addnew, onItemClick, cb, isSwitch = true, 
     onItemDeleted, onItemAdded, onItemChanged, onItemIndicated,
     ...rest } = props;
 
@@ -101,22 +102,30 @@ export default forwardRef(function ManageList(props) {
     // setClickState('listItemClick')
     if (navigation) {
       if (navigation.path) {
-        const nav = navigation.detail;
-        if (nav.indexOf('(id)') === -1) {
+        const nav = navigation.path;
+        if (nav.indexOf('(') === -1) {
           history.push({
             pathname: nav,
             query: {
               itemData: item
             }
           })
-        } else if (nav.indexOf('(id)') > -1) {
-          const formatNav = nav.replace('(id)', item.id);
+        } else if (nav.indexOf('(') !== -1) {
+          const formatNav = formatParams(nav, item);
           history.push({
             pathname: formatNav,
             query: {
             }
           })
         }
+      } else if(navigation.link){
+        const link = navigation.link;
+        let linkStr = link.indexOf('(') !== -1 ? formatParams(link, item) : link;
+        if (!linkStr.startsWith('http')) {
+          linkStr = getEndpoint() + linkStr
+        } 
+        const w = window.open('about:blank');
+        w.location.href = linkStr
       } else if (onItemClick) {
         onItemClick(item)
       }
@@ -184,7 +193,7 @@ export default forwardRef(function ManageList(props) {
     setLoading(true)
     promiseAjax(api, queryData).then(resp => {
       if (resp && resp.code === 200) {
-        setCurrentData(resp.data)
+        setCurrentData(resp.data || {})
       } else {
         console.error("获取数据失败")
       }
@@ -333,9 +342,8 @@ export default forwardRef(function ManageList(props) {
 
   return <div
     style={{
-      overflow: 'auto',
+      overflowX: 'hidden',
       position: 'relative',
-      // alignItems: 'center'
       minHeight: '200px'
     }}
     className={getClassName()}

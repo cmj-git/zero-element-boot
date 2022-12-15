@@ -58,6 +58,7 @@ import ClickIndicator from './indicator/ClickIndicator'
 import ManageMenuIndicator from './indicator/ManageMenuIndicator'
 import ShadowIndicator from './indicator/ShadowIndicator';
 import DeleteIndicator from './indicator/DeleteIndicator';
+import BackIndicator from './indicator/BackIndicator';
 
 // import RightIconCheckboxIndicatorDefauct from './indicator/RightIconCheckboxIndicator/Defauct';
 // import RightIconCheckboxIndicatorSelect from './indicator/RightIconCheckboxIndicator/Select';
@@ -68,8 +69,7 @@ import DeleteIndicator from './indicator/DeleteIndicator';
 // import RightIconIndicatorSelected from '@/components/indicator/RightIconIndicatorSelected';
 
 
-import {Avatar, DefaultAvatar, DownloadButton, ItemPlaceholder,AddNewButton, Text} from '@/components/presenter';
-import {Title, Subtitle} from '@/presenter/demo';
+import {Avatar, DefaultAvatar, DownloadButton, ItemPlaceholder,AddNewButton, Text, Title, Subtitle} from '@/components/presenter';
 
 import { 
   AutoLoadList,
@@ -113,6 +113,7 @@ NamedCartSet({
   // Page,
   // Rectangle,
   // Round: RoundCart,
+  NamedCart
 })
 
 NamedIndicatorSet({
@@ -129,6 +130,7 @@ NamedIndicatorSet({
   ManageMenuIndicator,
   ShadowIndicator,
   DeleteIndicator,
+  BackIndicator
 })
 
 NamedPresenterSet({

@@ -94,13 +94,33 @@ export default function (props) {
 //2021-11-10
 //新增 layout 新增 navigation 属性
 
-function AutoLayout({ children, layout, binding, gateway, allComponents = {}, onItemClick = () => { console.log('未设置onItemClick点击事件') }, dataSource, 
-  onItemDeleted, onItemAdded, onItemChanged, onItemIndicated, ...rest }) {
+function AutoLayout({ children, layout, binding, chain, gateway, allComponents = {}, onItemClick = () => { console.log('未设置onItemClick点击事件') }, dataSource={}, 
+  onItemDeleted, onItemAdded, onItemChanged, onItemIndicated, alternative, alternativeActive, onAlternativeBack, ...rest }) {
   // handle layout, container, gateway, cart, presenter, navigation, children
   // xpresenter 子项组件数据多层传递问题，意义同 presenter
-  const { xname, props, container, binding:layoutBinding, gateway:layoutGateway, cart, indicator, selector, unselector, presenter, navigation, children: layoutChildren } = sugarLayout(layout) || {};
-  const data = dataSource || rest || {}
-  // console.log('AutoLayout.container=', container)
+  const { xname, props, container, binding:layoutBinding, chain:layoutChain, gateway:layoutGateway, cart, indicator, selector, unselector, presenter, navigation, children: layoutChildren,
+    alternative:layoutAlternative,
+  } = sugarLayout(layout) || {};
+
+  // const data = dataSource || rest || {}
+  const data = {...dataSource, ...rest}
+
+  if(alternativeActive){
+    const notnull_alternative = (alternative && JSON.stringify(alternative) !== '{}' && alternative) || (layoutAlternative && JSON.stringify(layoutAlternative) !== '{}' && layoutAlternative) || tips('alternative')
+    const alternative_layout = (typeof notnull_alternative ==='string') ? ({xname: notnull_alternative}) : (notnull_alternative.layout ?  notnull_alternative.layout : notnull_alternative)
+
+    // exclude layout
+    const {layout, ...alternativeOthers} = notnull_alternative
+
+    // alternativeBack
+    const { _Component: _AlternativeBack, _component: _alternativeBack} = getComponent(notnull_alternative.alternativeBack, DefaultIndicatorGet())
+
+    return (
+      <_AlternativeBack {..._alternativeBack} onBack={onAlternativeBack} >
+        <AutoLayout layout={alternative_layout} dataSource={data} {...alternativeOthers} />
+      </_AlternativeBack>
+    )
+  }
   
   // Cart
   const _align_cart = ((cart && typeof cart === 'string') ? { xname: cart } : cart) || undefined
@@ -109,6 +129,7 @@ function AutoLayout({ children, layout, binding, gateway, allComponents = {}, on
 
   // Gateway
   const _layoutBinding = layoutBinding || binding
+  const _layoutChain   = layoutChain || chain
   const _layoutGateway = layoutGateway || gateway
   const _gateway = _layoutGateway ? (typeof _layoutGateway==='string' ? { xname: _layoutGateway } : sugarGateway(_layoutGateway)) : undefined
   const _NamedGateway = _layoutBinding || _gateway ? NamedGateway : NextIndicator;
@@ -122,21 +143,22 @@ function AutoLayout({ children, layout, binding, gateway, allComponents = {}, on
   const _allComponents = { ...allComponents, ...defaultPresenterGet}
 
   // Presenter,  means presenter is AutoLayout
-  const Presenter = ((presenter && typeof presenter === 'string') ? _allComponents[presenter]: (isJsonObject(presenter)? AutoLayout : undefined)) || tips(presenter)
-  const _presenter = isJsonObject(presenter)? {layout: {...presenter}} : {}
+  const Presenter = (presenter && typeof presenter === 'string') ? (_allComponents[presenter] || tips(presenter)) : (isJsonObject(presenter)? AutoLayout : undefined)
+  const _presenter = (Presenter && isJsonObject(presenter))? {layout: presenter} : {}
 
-  // handle simple presenter, from data
-  if (!layoutChildren && !container){
+
+  // handle simple presenter, from {xname,props}
+  if (!Presenter && !layoutChildren && !container){
       // support component from data, not from layout, with dash _  for xname,props,cart,binding,gateway,presenter
-      const {_xname = xname, _props = {...props}, _cart, _binding = {..._layoutBinding}, _gateway, _presenter, ..._rest } = data
+      const {_xname = xname, _props = {...props}, _cart, _binding = {..._layoutBinding}, _chain = {..._layoutChain}, _gateway, ..._rest } = data
       const _data_cart = __cart || _cart || {}
       const _data_gateway = _layoutGateway || _gateway
       const _data_binding = _layoutBinding || _binding
-      const _data_presenter = presenter || _presenter
+      const _data_chain = _layoutChain || _chain
 
       // all props (xname, props) from within presenter
-      const _____presenterName = _data_presenter ? ((typeof _data_presenter === 'string')? _data_presenter : _data_presenter.xname) : undefined  //local presenter
-      const _____presenter = ((_data_presenter && _data_presenter.props) ? _data_presenter.props : undefined) || undefined
+      // const _____presenterName = _presenter ? ((typeof _presenter === 'string')? _presenter : _presenter.xname) : undefined  //local presenter
+      // const _____presenter = ((_presenter && _presenter.props) ? _presenter.props : undefined) || undefined
 
       // TODO, should not support, keep it
       // const _____presenterCart = ((_data_presenter && _data_presenter.cart) ? _data_presenter.cart : undefined) || undefined
@@ -150,14 +172,17 @@ function AutoLayout({ children, layout, binding, gateway, allComponents = {}, on
       // const __gateway = _data_gateway ? ((typeof _data_gateway ==='string')? undefined : _data_gateway.props ) : undefined || _____presenterGateway
       // deprecated
 
-      const __presenterName = _xname || _____presenterName ||  tips(_xname);
-      const __presenter = _____presenter || _props;
+      // const __presenterName = _xname || _____presenterName ||  tips(_xname);
+      // const __presenter = _____presenter || _props;
+
+      const __presenterName = _xname
+      const __presenter = _props || {}
 
       const __NamedCart = _data_cart ? NamedCart : NextIndicator;
-      const __NamedGateway = (_data_binding || _data_gateway) ? NamedGateway : NextIndicator;
+      const __NamedGateway = (_data_binding || _data_chain || _data_gateway) ? NamedGateway : NextIndicator;
       const __Presenter = _allComponents[__presenterName] || tips(__presenterName)
       return (
-        <__NamedGateway binding={_data_binding} gateway={_data_gateway} {..._rest}>
+        <__NamedGateway binding={_data_binding} chain={_data_chain} gateway={_data_gateway} {..._rest}>
           <__NamedCart {..._data_cart} 
               onItemClick={onItemClick}
           >
@@ -179,9 +204,11 @@ function AutoLayout({ children, layout, binding, gateway, allComponents = {}, on
             const __presenter = isJsonObject(child)? {layout: {...child}} : {}
 
             return (
-                <__Presenter {...__presenter} allComponents={allComponents}  key={i} 
-                  onItemClick={onItemClick}
-                />
+              <_NamedCart key={i} {...__cart} >
+                  <__Presenter {...__presenter} allComponents={allComponents}  key={i} 
+                    onItemClick={onItemClick}
+                  />
+              </_NamedCart>
             )
 
           }) : (
@@ -202,7 +229,7 @@ function AutoLayout({ children, layout, binding, gateway, allComponents = {}, on
       onItemIndicated={onItemIndicated}
     >
       <NamedLayout xname={__xname} props={props} __>
-          <_NamedGateway binding={_layoutBinding} gateway={_gateway}>
+          <_NamedGateway binding={_layoutBinding} chain={_layoutChain} gateway={_gateway}>
                 <_NamedCart {...__cart} 
                   onItemDeleted={onItemDeleted}
                   onItemAdded={onItemAdded}
@@ -340,4 +367,15 @@ function sugarGateway(gateway){
 //   return (obj && typeof (obj) == "object" && obj.xname) && 
 //          (obj.presenter || (obj.children && Object.prototype.toString.call(obj.children).toLowerCase() == "[object array]" && obj.children.length > 0 ))
 // }
+
+function getComponent(component, componentSet){
+  const notnull_component = component || {}
+  const componentName = (typeof notnull_component==='string') ? notnull_component : notnull_component.xname
+
+  const _Component = componentName ? (componentSet[componentName] || tips(componentName)) : NextIndicator
+  
+  const _component = (typeof notnull_component==='string') ? {} : notnull_component.props
+
+  return {_Component, _component}
+}
 

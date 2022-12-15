@@ -79,6 +79,7 @@ import TestIndicator from './ATestIndicator'
 
 import CssCart from '@/components/cart/CssCart'
 import TestCart from '@/pages/TestCart'
+<<<<<<< HEAD
 import SelectCart from '@/pages/ManageCompoents/SelectCart/Sandbox'
 import ManagePage from '@/pages/ManagePage/Sandbox'
 import AppList from '@/pages/appList'
@@ -89,6 +90,9 @@ import SelectLayout from '@/pages/ManageCompoents/SelectLayout'
 import SelectModulesCart from '@/pages/ManageModules/SelectModulesCart/Sandbox'
 import ImageManage from '@/pages/ImageManage'
 import RssCssAutoLayout from '@/pages/rssCssAutoLayout'
+=======
+import SelectCart from '@/pages/SelectCart/Sandbox'
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
 
 
 export default function Index(props) {
@@ -113,8 +117,17 @@ export default function Index(props) {
 
   // return <AutoLayout {...config} onItemClick={onJarItemClick} />
 
+<<<<<<< HEAD
   // return <Connection/>
   // return <AutoComponentSet onItemClick={onItemClickHandle}/>
+=======
+  // return <TestCRUDList {...props} />
+  return (
+    <ChakraProvider>
+      <ApisUi {...props} />
+    </ChakraProvider>
+  )
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
 
   // return (
   // <CssCart width='300px' margin='40px'>

@@ -52,7 +52,7 @@ export default function Index(props) {
         let newNavCateList = []
         return promiseAjax(api, queryData).then(resp => {
             if (resp && resp.code === 200) {
-                newNavCateList = resp.data.records;
+                newNavCateList = resp.data && Array.isArray(resp.data) ? resp.data : resp.data.records;
 
                 //-1:新增  -2删除
                 newNavCateList.push({id:'-1'})
@@ -74,9 +74,14 @@ export default function Index(props) {
     //获取列表信息
     const fetchData = (api, queryData) => {
         setLoading(true)
-        return promiseAjax(api, queryData).then(resp => {
+        const query = {
+            ...queryData,
+            sort: 'sortNum',
+            orderBy: 'ASC'
+        }
+        return promiseAjax(api, query).then(resp => {
             if (resp && resp.code === 200) {
-                const list = resp.data.records;
+                const list = resp.data && Array.isArray(resp.data) ? resp.data : resp.data.records;;
                 setListData(list);
                 setLoading(false)
             } else {
@@ -89,25 +94,15 @@ export default function Index(props) {
 
     //列表item点击事件
     const onNavItemClick = (item) => {
-        const id = item.id;
-        // console.log('id = ', id)
-        // alert(`选择的用户id为: ${id}`)
+        // const id = item.id;
         //点击跳转页面
         if (item.url.indexOf('http') != -1) {
-          // window.location.replace(item.path)
-    
-          // history.push(url);
           const w = window.open('about:blank');
           w.location.href = item.url
-        //   console.log(item.path);
-    
         } else {
           const w = window.open('about:blank');
           const host = getEndpoint || location.host
           w.location.href = host + item.url
-    
-        //   console.log(host);
-    
         }
     }
 
@@ -192,7 +187,7 @@ export default function Index(props) {
     return (
         <ChakraProvider>
 
-            <div style={{ maxWidth: '1000px' }}>
+            <div style={{ }}>
                 <VStack align='stretch' spacing='-2'>
                     <Box style={{ margin: '10px 10px 30px 10px', paddingLeft: '8px' }}>
                         <FormControl display='flex' alignItems='center'>
@@ -248,7 +243,7 @@ export default function Index(props) {
                                                 onItemAdded={addAction}
                                                 onItemChanged={updateAction}
                                                 onItemIndicated={indicatedAction}
-                                                isSwitch={switchStatus} 
+                                                isSwitch={switchStatus}
                                             />
                                         </Box>
                                     )}

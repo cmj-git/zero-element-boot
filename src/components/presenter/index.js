@@ -1,8 +1,8 @@
 // default
 import Clean from './default/Clean';
-import Butter from './default/Butter/butter';
-import Pink from './default/Pink/pink';
-import Clear from './default/Clear/clear';
+import Butter from './default/Butter';
+import Pink from './default/Pink';
+import Clear from './default/Clear';
 // shape
 import Rectangle from './shape/Rectangle';
 import Circle from './shape/Circle';
@@ -29,6 +29,10 @@ import JsonTree from './tree/JsonTree'
 import TopBar from './app/TopBar'
 
 import Text from './Text'
+import Title from './Title'
+import Subtitle from './Subtitle';
+import Description from './Description'
+import ImageAnimation from './ImageAnimation'
 
 
 export {
@@ -64,5 +68,9 @@ export {
   // app
   TopBar,
 
-  Text
+  Text,
+  Title,
+  Subtitle,
+  Description,
+  ImageAnimation
 }

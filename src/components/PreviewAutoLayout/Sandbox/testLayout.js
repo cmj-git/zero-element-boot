@@ -38,7 +38,7 @@ const testPlainList =
                 },
             }
         ],
-    }
+    },
 }
 
 const doubleList = {

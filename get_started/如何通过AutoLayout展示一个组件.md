@@ -154,12 +154,18 @@
     "children": [
         "Butter",
 <<<<<<< HEAD
+<<<<<<< HEAD
         "Clean",
         "Clear",
         "Pink"
 =======
         "Clean"
 >>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
+=======
+        "Clean",
+        "Clear",
+        "Pink"
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
     ]
 }
 ```
@@ -173,10 +179,14 @@
             "xname": "Avatar",
             "props":{
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "url": "http://local.webtools.io/pepsi.png",
 =======
                 "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
 >>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
+=======
+                "url": "http://local.webtools.io/pepsi.png",
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
             }
         },
         {
@@ -185,6 +195,63 @@
                 "url": "https://static.smallsaas.cn/house/2022/svg/group/moerdeng/detailedDiagram/moerdeng2.png"
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        }
+    ]
+}
+```
+
+### 为每个子组件增加统一的`Cart`
+
+```json
+{
+    "children": [
+        "Butter",
+        "Clean",
+        "Clear",
+        "Pink"
+    ],
+    "cart": "Cart"
+}
+```
+
+### 为每个子组件配置不同的`Cart`
+
+```json
+{
+    "cart": "Cart",
+    "children": [
+        {
+            "xname": "Butter"
+        },
+        {
+            "xname": "Clean",
+            "cart": {
+                "xname": "CssCart",
+                "props": {
+                    "background": "blue"
+                }
+            }
+        },
+        {
+            "xname": "Clear",
+            "cart": {
+                "xname": "CssCart",
+                "props": {
+                    "background": "green"
+                }
+            }
+        },
+        {
+            "xname": "Pink",
+            "cart": {
+                "xname": "CssCart",
+                "props": {
+                    "background": "black"
+                }
+            }
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
         }
     ]
 }
@@ -262,10 +329,14 @@
     "xname": "Wrap",
     "children": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
         "Butter",
         "Clean",
         "Clear",
         "Pink"
+<<<<<<< HEAD
 =======
         {
             "xname": "Avatar",
@@ -277,6 +348,8 @@
             "xname": "Butter"
         }
 >>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
+=======
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
     ]
 }
 ```
@@ -286,6 +359,7 @@
 {
     "xname": "Flexbox",
     "props": {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"direction":"row"
     },
@@ -308,6 +382,15 @@
             "xname": "Butter"
         }
 >>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
+=======
+		"direction":"row"
+    },
+    "children": [
+        "Butter",
+        "Clean",
+        "Clear",
+        "Pink"
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
     ]
 }
 ```
@@ -324,6 +407,7 @@
     "children": [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "xname": "Avatar",
             "props": {
                 "size":"90"
@@ -334,6 +418,11 @@
     				"size":"90"
                 }
 >>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
+=======
+            "xname": "Avatar",
+            "props": {
+                "size":"90"
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
             },
             "binding":{
                 "avatarUrl":"url"
@@ -341,10 +430,14 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "xname": "Clear",
 =======
             "xname": "Butter",
 >>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
+=======
+            "xname": "Clear",
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
             "binding":{
                 "color":"color"
             }
@@ -354,7 +447,10 @@
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
 
 ## 列表组件部分
 
@@ -716,6 +812,7 @@
   ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ## 单选或多选
 用SelectList 对一个列表 进行管理 绑定参数 
@@ -781,11 +878,19 @@
 
 
 
+=======
+
+## 单选或多选
+  
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
 
 ### 由多个子组件组成的单选组件
 
 ### 由多个子组件组成的复选组件
 
+<<<<<<< HEAD
 =======
   
 >>>>>>> 51d9478f6eb270dbd655d31c8ad498836e8da2d4
+=======
+>>>>>>> 45ee3a70cfbf8336d0066f961d362d3cfc2ca602
